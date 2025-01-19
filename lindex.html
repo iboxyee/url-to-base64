@@ -1,26 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL to Base64 Converter</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Video Listing and Favorites</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>URL to Base64 Converter</h1>
-    </header>
-    <main>
-        <form id="converter-form">
-            <label for="url-input">Enter URL:</label>
-            <input type="text" id="url-input" placeholder="Enter URL here" required>
-            <button type="submit">Convert</button>
-        </form>
-        <div id="result">
-            <p>Base64 Encoded URL:</p>
-            <textarea id="base64-output" readonly></textarea>
+    <!-- Halaman Utama -->
+    <div class="container">
+        <!-- Dropdown Filter -->
+        <div class="dropdown">
+            <label for="categoryFilter">Filter by: </label>
+            <select id="categoryFilter" onchange="filterVideos()">
+                <option value="all">All Videos</option>
+                <option value="trending">Trending</option>
+                <option value="archive">Archive</option>
+                <option value="ranking">Ranking</option>
+                <option value="realtime">Realtime</option>
+            </select>
         </div>
-    </main>
+
+        <!-- Grid untuk Video -->
+        <div id="videoGrid" class="video-grid"></div>
+
+        <!-- Tombol Floating ke Halaman Favorit -->
+        <button class="floating-btn" onclick="window.location.href = '#favorites';">⛓️</button>
+
+        <!-- Pagination -->
+        <div id="pagination" class="pagination">
+            <button id="nextBtn" onclick="nextPage()">Next</button>
+        </div>
+    </div>
+
+    <!-- Halaman Favorit (Ditaruh di bagian bawah di sini) -->
+    <div id="favorites" style="display:none;">
+        <h1>Favorite Videos</h1>
+        <div id="favoriteGrid" class="video-grid"></div>
+        <div id="noFavoritesMessage"></div>
+        <a href="#" class="backBtn" onclick="window.location.href = '#';">Kembali ke Halaman Utama</a>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
